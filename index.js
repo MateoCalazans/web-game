@@ -14,6 +14,8 @@ const foregroundImage = new Image();
 foregroundImage.src = "./images/foregroundObjects.png";
 const lifeImage = new Image();
 lifeImage.src = "./images/life.png";
+const animalsImage = new Image();
+animalsImage.src = "./images/animals.png";
 canvas.width = 1024;
 canvas.height = 576;
 i = 0, j = 0, k = 0, contador = 0;
@@ -76,6 +78,55 @@ const life3 = new lifeSprite({
     }  
 })
 
+const chicken = new Animal({
+    position: { x: -50, y: 350 },
+    image: animalsImage,
+    frames: { max: 2 },
+    size: { width: 64, height: 96 }
+});
+
+const chicken1 = new Animal({
+    position: { x: 20, y: 385 },
+    image: animalsImage,
+    frames: { max: 2 },
+    size: { width:  64, height: 96 }
+});
+
+const chicken2 = new Animal({
+    position: { x: -40, y: 410 },
+    image: animalsImage,
+    frames: { max: 2 },
+    size: { width: 64, height: 96 }
+});
+
+const pig = new Animal({
+    position: { x: 700, y: 210 },
+    image: animalsImage,
+    frames: { max: 2 },
+    size: { width: 64, height: 96 } 
+});
+
+const pig1 = new Animal({
+    position: { x: 750, y: 158 },
+    image: animalsImage,
+    frames: { max: 2 },
+    size: { width: 64, height: 96 }
+});
+
+const cow = new Animal({
+    position: { x: -190, y: 580 },
+    image: animalsImage,
+    frames: { max: 2 },
+    size: { width: 64, height: 96 }
+});
+
+const cow1 = new Animal({
+    position: { x: -100, y: 550 },
+    image: animalsImage,
+    frames: { max: 2 },
+    size: { width: 64, height: 96 }
+});
+
 const player = new Sprite({
     position :{
         x: canvas.width/2 - 156/8,
@@ -131,7 +182,7 @@ const keys = {
 
 }
 
-const movables = [background, ...boundaries, foreground]
+const movables = [background, ...boundaries, foreground, chicken, chicken1, chicken2, pig, pig1, cow, cow1]
 
 function rectangularCollision ({rectangle1, rectangle2}){
     return (rectangle1.position.x + rectangle1.width >= rectangle2.position.x &&
@@ -152,6 +203,13 @@ function animate(){
     life1.draw(k)
     life2.draw(j)
     life3.draw(i)
+    chicken.draw(0, 25)
+    chicken1.draw(0, 35)
+    chicken2.draw(0, 30)
+    pig.draw(32, 30)
+    pig1.draw(32, 35)
+    cow.draw(64, 30)
+    cow1.draw(64, 35)
 
     let moving = true
     player.moving = false
@@ -180,7 +238,7 @@ function animate(){
                     rectangle1: player,
                     rectangle2: {...boundary, position: {
                         x: boundary.position.x,
-                        y: boundary.position.y + 3
+                        y: boundary.position.y + 2
                     }}
                 })
             ) {
@@ -190,7 +248,7 @@ function animate(){
         }
         if (moving)
         movables.forEach((movable) => {
-            movable.position.y +=3
+            movable.position.y +=2
         })
     }else if(keys.a.pressed && lastKey === 'a') {
         player.moving = true
@@ -203,7 +261,7 @@ function animate(){
                     rectangle2: {
                         ...boundary,
                         position: {
-                        x: boundary.position.x + 3,
+                        x: boundary.position.x + 2,
                         y: boundary.position.y
                     }}
                 })
@@ -214,7 +272,7 @@ function animate(){
         }
         if (moving)
         movables.forEach((movable) => {
-            movable.position.x +=3
+            movable.position.x +=2
         })
     }else if(keys.d.pressed && lastKey === 'd') {
         player.moving = true
@@ -227,7 +285,7 @@ function animate(){
                     rectangle2: {
                         ...boundary,
                         position: {
-                        x: boundary.position.x - 3,
+                        x: boundary.position.x - 2,
                         y: boundary.position.y
                     }}
                 })
@@ -238,7 +296,7 @@ function animate(){
         }
         if (moving)
         movables.forEach((movable) => {
-            movable.position.x -=3
+            movable.position.x -=2
         })
     }
     else if(keys.s.pressed && lastKey === 's') {
@@ -253,7 +311,7 @@ function animate(){
                         ...boundary,
                         position: {
                         x: boundary.position.x,
-                        y: boundary.position.y - 3
+                        y: boundary.position.y - 2
                     }}
                 })
             ) {
@@ -263,7 +321,7 @@ function animate(){
         }
         if (moving)
         movables.forEach((movable) => {
-            movable.position.y -=3
+            movable.position.y -=2
         })
     }
 }

@@ -5,4 +5,12 @@ body {
     height: 100vh;
     margin: 0px;
     background-image: url('images/TADSADVENTURE.png');
+<<<<<<< HEAD
+=======
+}
+
+.borda {
+    border: 6px solid black;
+    border-radius: 15px;
+>>>>>>> upstream/main
 }

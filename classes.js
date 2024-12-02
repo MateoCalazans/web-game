@@ -91,3 +91,43 @@ class lifeSprite {
     }
 }
 }
+
+class Animal {
+    constructor({ position, image, frames = { max: 1 }, size }) {
+        this.position = position;
+        this.image = image;
+        this.frames = { ...frames, val: 0, elapsed: 0 };
+        this.size = size; // Largura e altura do frame que será exibido
+        this.image.onload = () => {
+            this.originalWidth = this.image.width;
+            this.originalHeight = this.image.height;
+        };
+    }
+
+    draw(valor, elap) {
+        const sourceWidth = 32; // Largura do frame (fixa)
+        const sourceHeight = 32; 
+
+        const sourceX = this.frames.val * 32;
+        const sourceY = valor;
+
+        ctx.drawImage(
+        this.image,
+        sourceX,
+        sourceY,
+        sourceWidth, 
+        sourceHeight,
+        this.position.x,
+        this.position.y,
+        this.size.width,
+        this.size.height
+    );
+
+        this.frames.elapsed++;
+
+        if (this.frames.elapsed % elap === 0) {
+            // Alterna o frame
+            this.frames.val = (this.frames.val + 1) % this.frames.max;
+        }
+    }
+}
