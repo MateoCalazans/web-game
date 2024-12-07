@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box;
+}
 body {
     display: flex;
     justify-content: center;
@@ -5,12 +8,48 @@ body {
     height: 100vh;
     margin: 0px;
     background-image: url('images/TADSADVENTURE.png');
-<<<<<<< HEAD
-=======
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .borda {
     border: 6px solid black;
     border-radius: 15px;
->>>>>>> upstream/main
+}
+
+.display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.dialog {
+    visibility: hidden;
+    position: absolute;
+    bottom: 0;
+    width: 1024px;
+    background-color: black;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: white;
+    padding: 0 10px;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+    color: white;
+}
+
+.gameover{
+    background-image: url('images/gameover.png');
+    width:100vw;
+    height: 100vh;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: none;
 }
